@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="vaso-de-agua.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>Hidratate Pro</title>
+</head>
+<body>
+
+    <div class="app-container">
+        <div class="app-wrapper">
+            
+            <div class="main-card">
+                <h1 class="compact-title">Hidratate</h1>
+                
+                <div class="settings-compact">
+                    <label>Meta diaria:</label>
+                    <select id="goal-select">
+                        <option value="1500">1.5L</option>
+                        <option value="2000" selected>2.0L</option>
+                        <option value="2500">2.5L</option>
+                        <option value="3000">3.0L</option>
+                    </select>
+                </div>
+
+                <div class="cup main-cup-compact">
+                    <div class="remained" id="remained">
+                        <span id="liters"></span>
+                        <small>Faltan</small>
+                    </div>
+                    <div class="percentage" id="percentage">
+                        <div class="wave"></div>
+                    </div>
+                </div>
+
+                <p class="message-compact" id="motivation-msg">¡Mantente hidratado!</p>
+                
+                <div class="cups-grid" id="cups-container"></div>
+
+                <button id="reset-btn" class="reset-btn-compact">Reiniciar Día</button>
+            </div>
+
+            <div class="history-card-compact">
+                <h2 class="history-title">Historial de Logros</h2>
+                <table class="stats-table-compact">
+                    <thead>
+                        <tr>
+                            <th>Periodo</th>
+                            <th>Días Cumplidos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Últimos 7 días</td>
+                            <td id="weekly-count" class="stat-green">0</td>
+                        </tr>
+                        <tr>
+                            <td>Últimos 30 días</td>
+                            <td id="monthly-count" class="stat-green">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="info-footer">Los logros se registran automáticamente al completar tu meta diaria.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
