@@ -1,35 +1,38 @@
 /* Importación de fuente */
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap');
 
-/* Reset base para eliminar scroll y fijar dimensiones */
+/* Reset base */
 body, html {
     margin: 0;
     padding: 0;
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     font-family: 'Montserrat', sans-serif;
     color: #fff;
-    overflow: hidden; /* Bloquea el scroll vertical y horizontal */
+    overflow-x: hidden; /* Evita scroll horizontal */
 }
 
-/* Contenedor principal con fondo de imagen */
+/* Contenedor principal con fondo */
 .app-container {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                url('agua-neutra-apertura-shutterstock_2494172253-1024x575.jpg') center/cover no-repeat;
+                url('agua-neutra-apertura-shutterstock_2494172253-1024x575.jpg') center/cover no-repeat fixed;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-/* Envoltura para las dos columnas (App e Historial) */
+/* Envoltura adaptativa */
 .app-wrapper {
     display: flex;
-    width: 95%;
+    flex-direction: row; /* Horizontal en PC */
+    width: 100%;
     max-width: 1100px;
-    height: 90vh; /* Ocupa el 90% del alto de la pantalla */
     gap: 40px;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 /* --- COLUMNA IZQUIERDA: TARJETA PRINCIPAL --- */
@@ -38,52 +41,52 @@ body, html {
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border-radius: 30px;
-    padding: 20px;
+    padding: 25px;
     flex: 1;
-    height: 100%;
+    width: 100%;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-sizing: border-box;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
 }
 
 .compact-title { 
-    margin: 0; 
+    margin: 0 0 10px 0; 
     font-size: 1.8rem; 
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
-.settings-compact {
-    margin: 10px 0;
-}
+.settings-compact { margin-bottom: 15px; }
 
 .settings-compact select {
     background: rgba(255, 255, 255, 0.2);
     color: white;
     border: 1px solid white;
-    padding: 5px;
-    border-radius: 5px;
+    padding: 8px 15px;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
 }
 
-/* --- COPA GRANDE (LLENADO DESDE ABAJO) --- */
+/* --- COPA GRANDE --- */
 .main-cup-compact {
     height: 250px; 
-    width: 120px;
+    width: 130px;
     background-color: rgba(255, 255, 255, 0.9);
     border: 4px solid #144fc6;
     border-radius: 0 0 40px 40px;
     overflow: hidden;
     position: relative;
-    /* Flex-end hace que el contenido (agua) empiece abajo */
     display: flex;
     flex-direction: column;
     justify-content: flex-end; 
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    margin-bottom: 15px;
 }
 
-/* El bloque azul de agua */
 .percentage {
     background-color: #6ab3f8;
     display: flex;
@@ -91,18 +94,16 @@ body, html {
     justify-content: center;
     font-weight: bold;
     font-size: 22px;
-    height: 0; /* Lo controla el JS */
+    height: 0;
     transition: height 0.5s ease-in-out;
     position: relative;
     z-index: 2;
-    width: 100%;
     color: #fff;
 }
 
-/* Animación de la ola */
 .wave {
     position: absolute;
-    top: -130px;
+    top: -140px;
     left: -50%;
     width: 200%;
     height: 200px;
@@ -113,31 +114,26 @@ body, html {
 
 @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-/* Texto de "Faltan Litros" fijo en el centro */
 .remained {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
     color: #144fc6;
     z-index: 1;
     width: 100%;
     pointer-events: none;
-    text-align: center;
 }
 
 .remained span { font-size: 1.5rem; font-weight: bold; }
 
-/* --- GRID DE VASOS PEQUEÑOS --- */
+/* --- GRID DE VASOS --- */
 .cups-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin: 15px 0;
+    gap: 12px;
+    margin: 20px 0;
 }
 
 .cup-small {
@@ -145,54 +141,45 @@ body, html {
     border: 2px solid #144fc6;
     color: #144fc6;
     border-radius: 0 0 12px 12px;
-    height: 60px;
-    width: 45px;
+    height: 65px;
+    width: 50px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 11px;
     font-weight: bold;
-    transition: all 0.3s ease;
-    text-align: center;
+    transition: all 0.2s ease;
 }
 
-/* Vaso seleccionado/lleno */
 .cup-small.full {
     background-color: #6ab3f8;
     color: #fff;
-    border-color: #144fc6;
     transform: scale(1.05);
 }
-
-.message-compact { margin: 5px 0; font-weight: 600; }
 
 .reset-btn-compact {
     background: #144fc6;
     border: none;
     color: white;
-    padding: 10px 30px;
+    padding: 12px 25px;
     border-radius: 25px;
     cursor: pointer;
     font-weight: bold;
     transition: 0.3s;
+    margin-top: 10px;
 }
-
-.reset-btn-compact:hover { background: #0e3da3; }
 
 /* --- COLUMNA DERECHA: HISTORIAL --- */
 .history-card-compact {
     flex: 1;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 20px;
+    padding: 20px;
+    max-width: 500px;
 }
 
 .history-title {
     font-size: 2.2rem;
-    margin-bottom: 30px;
+    margin: 0 0 20px 0;
     border-bottom: 2px solid rgba(255,255,255,0.3);
     padding-bottom: 10px;
 }
@@ -202,17 +189,10 @@ body, html {
     border-collapse: collapse;
 }
 
-.stats-table-compact th {
-    text-align: left;
-    color: #6ab3f8;
-    font-size: 1.1rem;
-    padding-bottom: 15px;
-}
-
 .stats-table-compact td {
-    padding: 25px 0;
+    padding: 20px 0;
     border-bottom: 1px solid rgba(255,255,255,0.2);
-    font-size: 1.4rem;
+    font-size: 1.2rem;
 }
 
 .stat-green { 
@@ -222,16 +202,39 @@ body, html {
     font-size: 1.8rem; 
 }
 
-.info-footer {
-    margin-top: 30px;
-    font-size: 0.9rem;
-    opacity: 0.8;
-    line-height: 1.4;
+/* --- MEDIA QUERIES (MÓVIL) --- */
+@media (max-width: 850px) {
+    .app-wrapper {
+        flex-direction: column; /* Apila las columnas */
+        align-items: center;
+    }
+
+    .main-card {
+        max-width: 100%;
+    }
+
+    .history-card-compact {
+        max-width: 100%;
+        text-align: center;
+        padding-left: 0;
+    }
+
+    .history-title {
+        font-size: 1.8rem;
+    }
+
+    .stats-table-compact td {
+        font-size: 1rem;
+    }
 }
 
-/* Ajuste para pantallas más pequeñas */
-@media (max-height: 700px) {
-    .main-cup-compact { height: 180px; width: 90px; }
-    .cup-small { height: 50px; width: 38px; }
-    .compact-title { font-size: 1.4rem; }
+@media (max-width: 400px) {
+    .cups-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 vasos por fila en móviles mini */
+    }
+    
+    .main-cup-compact {
+        height: 200px;
+        width: 110px;
+    }
 }
